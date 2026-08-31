@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- 确保在手机上正确显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的NFC视频展示</title>
+    <style>
+        /* 简单样式，让视频自适应屏幕 */
+        body {
+            background: #000;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* 1. 网格容器 - 负责排列 */
+        .video-grid {
+            display: grid;
+            /* 核心：两列等宽 (1fr 代表一份均分宽度) */
+            grid-template-columns: 1fr 1fr;
+            /* 列与列、行与行之间的间距，这里设了10px */
+            gap: 10px;
+            /* 限制整体最大宽度，防止在平板上被拉得太宽，750px足够放下两个小视频 */
+            max-width: 750px;
+            /* 让网格整体居中 */
+            margin: 0 auto;
+            /* 让内容离屏幕边缘有点呼吸感 */
+            padding: 10px;
+        }
+
+        /* 2. 单个视频标签 - 负责填充格子 */
+        .video-grid video {
+            /* 强制视频宽度填满自己的网格格子（即父容器的一半宽度） */
+            width: 100%;
+            /* 重要！覆盖掉之前你设的 max-width: 600px，否则缩不回去 */
+            max-width: 100%;
+            height: auto; /* 高度自适应，保持视频原始比例 */
+
+            /* 给缩小的视频一个固定的比例，看起来更整齐（可选） */
+            aspect-ratio: 16 / 9;
+            /* 如果视频比例不是16:9，裁切边缘填满格子，不留黑边 */
+            object-fit: cover;
+
+            /* 保留你原来的圆角和背景 */
+            border-radius: 8px;
+            background: #222;
+
+            /* 去掉原来的 margin-bottom（因为网格的 gap 已经负责了间距） */
+            margin-bottom: 0;
+
+            /* 为了让缩小后的点击区域更明确，加个极细边框更显质感（可选） */
+            /* border: 1px solid rgba(255,255,255,0.1); */
+        }
+        /* 为了让视频在iOS上能自动播放 */
+        video {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="video-grid">
+    <!-- 第一个视频 -->
+    <video autoplay muted playsinline controls>
+        <!-- 把 src 替换成你的第一个视频地址 -->
+        <source src="1.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+    </video>
+
+    <!-- 第二个视频 -->
+    <video autoplay muted playsinline controls>
+        <!-- 把 src 替换成你的第二个视频地址 -->
+        <source src="2.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+    </video>
+
+    <!-- 第三个视频 -->
+    <video autoplay muted playsinline controls>
+        <!-- 把 src 替换成你的第三个视频地址 -->
+        <source src="3.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+    </video>
+
+    <!-- 第四个视频 -->
+    <video autoplay muted playsinline controls>
+        <!-- 把 src 替换成你的第四个视频地址 -->
+        <source src="4.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+    </video>
+</div>
+</body>
+</html>
